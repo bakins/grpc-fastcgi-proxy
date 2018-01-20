@@ -9,3 +9,4 @@ RUN git clone github.com/bakins/grpc-fastcgi-proxy
 RUN cd grpc-fastcgi-proxy
 
 RUN go build ./cmd/grpc-fastcgi-proxy
+
