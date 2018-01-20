@@ -9,4 +9,6 @@ RUN git clone github.com/bakins/grpc-fastcgi-proxy
 RUN cd grpc-fastcgi-proxy
 
 RUN go build ./cmd/grpc-fastcgi-proxy
+RUN ./grpc-fastcgi-proxy $HOME/git/grpc-fastcgi-example/index.php
+
 
