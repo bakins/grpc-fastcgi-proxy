@@ -18,7 +18,10 @@ import (
 	"strconv"
 	"sync"
 	"time"
+<<<<<<< HEAD
         "github.com/pkg/errors"
+=======
+>>>>>>> e8c2583e4b4e08d194095c78630b5b3ef3787d9d
 )
 
 const FCGI_LISTENSOCK_FILENO uint8 = 0
