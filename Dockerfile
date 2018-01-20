@@ -20,7 +20,7 @@ WORKDIR ./grpc-fastcgi-proxy
 RUN pwd
 RUN go build ./cmd/grpc-fastcgi-proxy
 
-EXPOSE 80
+EXPOSE 8080
 
 RUN ./grpc-fastcgi-proxy $HOME/git/grpc-fastcgi-example/index.php
 
