@@ -20,7 +20,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/pkg/errors"
 )
 
 const FCGI_LISTENSOCK_FILENO uint8 = 0
