@@ -10,7 +10,6 @@ import (
 	"bytes"
 	"encoding/binary"
 	"io"
-	"errors"
 	"io/ioutil"
 	"net"
 	"net/http"
