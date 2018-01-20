@@ -9,7 +9,6 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/binary"
-	"errors"
 	"io"
 	"io/ioutil"
 	"net"
@@ -19,7 +18,6 @@ import (
 	"strconv"
 	"sync"
 	"time"
-
 )
 
 const FCGI_LISTENSOCK_FILENO uint8 = 0
