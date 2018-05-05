@@ -77,7 +77,7 @@ func (s *Server) streamHandler(srv interface{}, stream grpc.ServerStream) error 
 	params["DOCUMENT_ROOT"] = s.docRoot
 	params["SCRIPT_FILENAME"] = s.entryFile
 
-	resp, err := s.fastcgiClientPool.request(req, params)
+	resp, err := s.request(req, params)
 
 	if err != nil {
 		return status.Errorf(codes.Internal, "fastcgi request failed: %s", err)
@@ -119,7 +119,7 @@ func (s *Server) auxPathHandle(filename string) http.Handler {
 		params["DOCUMENT_ROOT"] = docroot
 		params["SCRIPT_FILENAME"] = filename
 
-		resp, err := s.fastcgiClientPool.request(r, params)
+		resp, err := s.request(r, params)
 
 		if err != nil {
 			http.Error(w, err.Error(), 500)

@@ -31,16 +31,15 @@ import (
 
 // Server is an http/2 server that proxies to fastcgi
 type Server struct {
-	address           string
-	auxAddress        string
-	fastEndpoint      *url.URL
-	entryFile         string
-	docRoot           string
-	httpServer        *http.Server
-	grpcServer        *grpc.Server
-	logger            *zap.Logger
-	fastcgiClientPool *fastcgiClientPool
-	auxPaths          map[string]string //paths we will serve on aux port
+	address      string
+	auxAddress   string
+	fastEndpoint *url.URL
+	entryFile    string
+	docRoot      string
+	httpServer   *http.Server
+	grpcServer   *grpc.Server
+	logger       *zap.Logger
+	auxPaths     map[string]string //paths we will serve on aux port
 }
 
 // OptionsFunc is a function passed to New to set options.
@@ -71,8 +70,6 @@ func NewServer(options ...OptionsFunc) (*Server, error) {
 		}
 		s.logger = l
 	}
-
-	s.fastcgiClientPool = newFastcgiClientPool(s.fastEndpoint, 4)
 
 	return s, nil
 }
@@ -184,6 +181,7 @@ func (s *Server) Run() error {
 			grpc_middleware.ChainStreamServer(
 				grpc_prometheus.StreamServerInterceptor,
 				grpc_zap.StreamServerInterceptor(s.logger),
+				newLimit(16, time.Minute).streamServerInterceptor,
 				grpc_recovery.StreamServerInterceptor(),
 			),
 		),
